@@ -1,0 +1,109 @@
+{
+  "name": "Manga",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "T\u00edtulo del manga"
+    },
+    "title_english": {
+      "type": "string",
+      "description": "T\u00edtulo en ingl\u00e9s"
+    },
+    "title_japanese": {
+      "type": "string",
+      "description": "T\u00edtulo en japon\u00e9s"
+    },
+    "synopsis": {
+      "type": "string",
+      "description": "Sinopsis del manga"
+    },
+    "cover_image": {
+      "type": "string",
+      "description": "URL de la imagen de portada"
+    },
+    "author": {
+      "type": "string",
+      "description": "Autor del manga"
+    },
+    "artist": {
+      "type": "string",
+      "description": "Ilustrador del manga"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "En publicaci\u00f3n",
+        "Finalizado",
+        "En pausa"
+      ],
+      "default": "Finalizado"
+    },
+    "chapters_count": {
+      "type": "number",
+      "description": "N\u00famero total de cap\u00edtulos"
+    },
+    "volumes_count": {
+      "type": "number",
+      "description": "N\u00famero total de vol\u00famenes"
+    },
+    "year": {
+      "type": "number",
+      "description": "A\u00f1o de inicio"
+    },
+    "publisher": {
+      "type": "string",
+      "description": "Editorial"
+    },
+    "genres": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "G\u00e9neros del manga"
+    },
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Temas del manga"
+    },
+    "demographics": {
+      "type": "string",
+      "enum": [
+        "Shounen",
+        "Shoujo",
+        "Seinen",
+        "Josei",
+        "Kodomo"
+      ],
+      "description": "Demograf\u00eda objetivo"
+    },
+    "rating": {
+      "type": "number",
+      "description": "Calificaci\u00f3n promedio (0-10)",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "popularity_score": {
+      "type": "number",
+      "description": "Score de popularidad"
+    },
+    "is_premium": {
+      "type": "boolean",
+      "default": false,
+      "description": "\u00bfRequiere membres\u00eda premium?"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "\u00bfDestacado?"
+    }
+  },
+  "required": [
+    "title",
+    "synopsis",
+    "cover_image"
+  ]
+}

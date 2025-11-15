@@ -35,7 +35,7 @@ export default function ContentRow({ title, animes, showProgress = false }) {
         <Button
           variant="ghost"
           size="icon"
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/70 backdrop-blur-sm hover:bg-black/90 opacity-0 group-hover/row:opacity-100 transition-opacity rounded-full"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/70 backdrop-blur-sm hover:bg-black/90 opacity-0 group-hover/row:opacity-100 transition-opacity rounded-full cursor-pointer"
           onClick={() => scroll("left")}
         >
           <ChevronLeft className="w-6 h-6 text-white" />
@@ -44,7 +44,7 @@ export default function ContentRow({ title, animes, showProgress = false }) {
         <Button
           variant="ghost"
           size="icon"
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/70 backdrop-blur-sm hover:bg-black/90 opacity-0 group-hover/row:opacity-100 transition-opacity rounded-full"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/70 backdrop-blur-sm hover:bg-black/90 opacity-0 group-hover/row:opacity-100 transition-opacity rounded-full cursor-pointer"
           onClick={() => scroll("right")}
         >
           <ChevronRight className="w-14 h-14 text-white" />

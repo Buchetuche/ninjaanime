@@ -1,5 +1,5 @@
 import { Button } from "@/Components/ui/button";
-import { Info, Play, Plus, Volume2, VolumeX } from "lucide-react";
+import { Info, Play, Plus } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -32,7 +32,7 @@ function Slide({ anime, offset, transitionMs, onImageLoad }) {
 
       <div className="absolute inset-0 z-20 flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-2xl space-y-6">
+          <div className="max-w-7xl space-y-6">
             {anime.is_simulcast && (
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF6B35]/20 border border-[#FF6B35] rounded-full backdrop-blur-sm glow-orange">
                 <span className="w-2 h-2 bg-[#FF6B35] rounded-full animate-pulse" />
@@ -131,12 +131,12 @@ export default function HeroBanner({ currentAnime, incomingAnime = null, current
         </div>
       )}
 
-      <button
+      {/* <button
         onClick={() => setMuted(!muted)}
         className="absolute bottom-8 right-4 lg:right-8 z-20 w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
       >
         {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-      </button>
+      </button> */}
     </div>
   );
 }

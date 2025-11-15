@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import animesData from "@/data/animes.json";
 import userDataJson from "@/data/user.json"; // <-- usuario local
 import {
   Bell,
@@ -22,7 +23,7 @@ import {
   X
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { createPageUrl } from "../src/Components/lib/utils";
 
 export default function Layout({ children }) {
@@ -30,6 +31,9 @@ export default function Layout({ children }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [user, setUser] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -48,7 +52,7 @@ export default function Layout({ children }) {
   const navItems = [
     { name: "Inicio", path: createPageUrl("Home"), icon: Home },
     { name: "Explorar", path: "/browse", icon: Compass },
-    { name: "Manga", path: "#", icon: BookOpen },
+    { name: "Manga", path: "/manga", icon: BookOpen },
     { name: "Noticias", path: "#", icon: Newspaper }
   ];
 
@@ -116,9 +120,11 @@ export default function Layout({ children }) {
             {/* Logo */}
             <Link to={createPageUrl("Home")} className="flex items-center gap-2 group">
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#FF6B35] to-[#E85A2A] rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform glow-orange">
-                  <span className="text-white font-bold text-xl">N</span>
-                </div>
+                <img
+                  src="/favicon.ico"
+                  alt="AnimeNinja"
+                  className="w-10 h-10 rounded-lg object-cover transform group-hover:scale-110 transition-transform glow-orange"
+                />
               </div>
               <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Anime<span className="text-[#FF6B35]">Ninja</span>
@@ -149,9 +155,54 @@ export default function Layout({ children }) {
                   type="search"
                   placeholder="Buscar anime..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    const q = e.target.value;
+                    setSearchQuery(q);
+                    if (q.length > 0) {
+                      const matches = animesData.filter(a => {
+                        const title = (a.title || "").toLowerCase();
+                        const titleEng = (a.title_english || "").toLowerCase();
+                        return title.includes(q.toLowerCase()) || titleEng.includes(q.toLowerCase());
+                      }).slice(0, 6);
+                      setSuggestions(matches);
+                      setShowSuggestions(true);
+                    } else {
+                      setSuggestions([]);
+                      setShowSuggestions(false);
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && searchQuery.trim()) {
+                      navigate(`/browse?q=${encodeURIComponent(searchQuery.trim())}`);
+                      setShowSuggestions(false);
+                    }
+                  }}
+                  onFocus={() => { if (suggestions.length > 0) setShowSuggestions(true); }}
                   className="w-64 pl-10 bg-[#13131A] border-gray-700 focus:border-[#FF6B35] rounded-full"
                 />
+                {/* Suggestions dropdown */}
+                {showSuggestions && suggestions.length > 0 && (
+                  <div className="absolute mt-2 w-64 bg-[#0A0A0F] border border-gray-800 rounded-md shadow-lg z-50 overflow-hidden">
+                    {suggestions.map((s) => (
+                      <button
+                        key={s.id}
+                        onMouseDown={(ev) => {
+                          // use onMouseDown to avoid losing focus before click
+                          ev.preventDefault();
+                          navigate(`/anime-details?id=${s.id}`);
+                          setShowSuggestions(false);
+                        }}
+                        className="w-full text-left px-3 py-2 hover:bg-[#13131A] flex items-center gap-3 cursor-pointer"
+                      >
+                        <img src={s.card_image || s.cover_image} alt={s.title} className="w-10 h-6 object-cover rounded" />
+                        <div className="truncate">
+                          <div className="text-sm font-medium">{s.title}</div>
+                          {s.title_english && <div className="text-xs text-gray-400 truncate">{s.title_english}</div>}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {user ? (
