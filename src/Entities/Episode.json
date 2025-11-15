@@ -1,0 +1,54 @@
+{
+  "name": "Episode",
+  "type": "object",
+  "properties": {
+    "anime_id": {
+      "type": "string",
+      "description": "ID del anime al que pertenece"
+    },
+    "episode_number": {
+      "type": "number",
+      "description": "N\u00famero del episodio"
+    },
+    "title": {
+      "type": "string",
+      "description": "T\u00edtulo del episodio"
+    },
+    "synopsis": {
+      "type": "string",
+      "description": "Sinopsis del episodio"
+    },
+    "thumbnail": {
+      "type": "string",
+      "description": "URL de la miniatura"
+    },
+    "video_url": {
+      "type": "string",
+      "description": "URL del video"
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duraci\u00f3n en minutos"
+    },
+    "air_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha de emisi\u00f3n"
+    },
+    "has_dub": {
+      "type": "boolean",
+      "default": false,
+      "description": "\u00bfTiene doblaje?"
+    },
+    "has_sub": {
+      "type": "boolean",
+      "default": true,
+      "description": "\u00bfTiene subt\u00edtulos?"
+    }
+  },
+  "required": [
+    "anime_id",
+    "episode_number",
+    "title"
+  ]
+}

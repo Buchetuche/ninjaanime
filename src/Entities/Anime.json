@@ -1,0 +1,134 @@
+{
+  "name": "Anime",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "T\u00edtulo del anime"
+    },
+    "title_english": {
+      "type": "string",
+      "description": "T\u00edtulo en ingl\u00e9s"
+    },
+    "title_japanese": {
+      "type": "string",
+      "description": "T\u00edtulo en japon\u00e9s"
+    },
+    "synopsis": {
+      "type": "string",
+      "description": "Sinopsis del anime"
+    },
+    "cover_image": {
+      "type": "string",
+      "description": "URL de la imagen de portada"
+    },
+    "banner_image": {
+      "type": "string",
+      "description": "URL del banner hero"
+    },
+    "trailer_url": {
+      "type": "string",
+      "description": "URL del trailer"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "TV",
+        "Movie",
+        "OVA",
+        "ONA",
+        "Special"
+      ],
+      "default": "TV"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "En emisi\u00f3n",
+        "Finalizado",
+        "Pr\u00f3ximamente"
+      ],
+      "default": "Finalizado"
+    },
+    "episodes_count": {
+      "type": "number",
+      "description": "N\u00famero total de episodios"
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duraci\u00f3n promedio del episodio en minutos"
+    },
+    "year": {
+      "type": "number",
+      "description": "A\u00f1o de estreno"
+    },
+    "season": {
+      "type": "string",
+      "enum": [
+        "Invierno",
+        "Primavera",
+        "Verano",
+        "Oto\u00f1o"
+      ]
+    },
+    "studio": {
+      "type": "string",
+      "description": "Estudio de animaci\u00f3n"
+    },
+    "genres": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "G\u00e9neros del anime"
+    },
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Temas del anime"
+    },
+    "demographics": {
+      "type": "string",
+      "enum": [
+        "Shounen",
+        "Shoujo",
+        "Seinen",
+        "Josei",
+        "Kodomo"
+      ],
+      "description": "Demograf\u00eda objetivo"
+    },
+    "rating": {
+      "type": "number",
+      "description": "Calificaci\u00f3n promedio (0-10)",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "popularity_score": {
+      "type": "number",
+      "description": "Score de popularidad"
+    },
+    "is_simulcast": {
+      "type": "boolean",
+      "default": false,
+      "description": "\u00bfEs un simulcast?"
+    },
+    "is_premium": {
+      "type": "boolean",
+      "default": false,
+      "description": "\u00bfRequiere membres\u00eda premium?"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "\u00bfDestacado en el hero?"
+    }
+  },
+  "required": [
+    "title",
+    "synopsis",
+    "cover_image"
+  ]
+}

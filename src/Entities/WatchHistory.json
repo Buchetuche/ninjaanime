@@ -1,0 +1,37 @@
+{
+  "name": "WatchHistory",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email del usuario"
+    },
+    "anime_id": {
+      "type": "string",
+      "description": "ID del anime"
+    },
+    "episode_id": {
+      "type": "string",
+      "description": "ID del episodio"
+    },
+    "progress": {
+      "type": "number",
+      "description": "Progreso en segundos"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "\u00bfEpisodio completado?"
+    },
+    "last_watched": {
+      "type": "string",
+      "format": "date-time",
+      "description": "\u00daltima vez que se vio"
+    }
+  },
+  "required": [
+    "user_email",
+    "anime_id",
+    "episode_id"
+  ]
+}
