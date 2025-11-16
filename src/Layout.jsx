@@ -346,7 +346,7 @@ export default function Layout({ children }) {
             </div>
           </div>
           <div className="pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
-            <p>© 2024 AnimeNinja. Todos los derechos reservados.</p>
+            <p>© 2024 AnimeNinja. Todos los derechos reservados. @Buchetuche</p>
           </div>
         </div>
       </footer>
