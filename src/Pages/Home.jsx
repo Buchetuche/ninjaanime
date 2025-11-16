@@ -4,8 +4,8 @@ import userDataJson from "@/data/user.json";
 import { useQuery } from "@tanstack/react-query";
 import { Calendar, Clock, Crown, Sparkles, TrendingUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import ContentRow from "../components/home/ContentRow";
-import HeroBanner from "../components/home/HeroBanner";
+import ContentRow from "../Components/home/ContentRow";
+import HeroBanner from "../Components/home/HeroBanner";
 
 export default function HomePage() {
   const [user, setUser] = useState(null);

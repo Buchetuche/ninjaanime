@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import animesData from "@/data/animes.json";
-import userDataJson from "@/data/user.json"; // <-- usuario local
+import userDataJson from "@/data/user.json";
 import {
   Bell,
   BookOpen,
