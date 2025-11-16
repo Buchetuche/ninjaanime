@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useQuery } from "@tanstack/react-query";
 import { Clock, Crown, Heart, Settings, User } from "lucide-react";
 import { useEffect, useState } from "react";
-import AnimeCard from "../components/home/AnimeCard";
+import AnimeCard from "../Components/home/AnimeCard";
 import WatchHistory from "../Entities/WatchHistory";
 
 const GENRES = [

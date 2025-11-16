@@ -20,7 +20,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
-import AnimeCard from "../components/home/AnimeCard";
+import AnimeCard from "../Components/home/AnimeCard";
 import Anime from "../Entities/Anime";
 
 const GENRES = [
