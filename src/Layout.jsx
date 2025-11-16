@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
+} from "@/Components/ui/dropdown-menu";
+import { Input } from "@/Components/ui/input";
 import animesData from "@/data/animes.json";
 import userDataJson from "@/data/user.json";
 import {

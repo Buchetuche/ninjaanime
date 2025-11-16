@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/Components/ui/skeleton";
 import animesData from "@/data/animes.json";
 import userDataJson from "@/data/user.json";
 import { useQuery } from "@tanstack/react-query";
