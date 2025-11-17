@@ -15,7 +15,6 @@ import {
   Compass,
   Crown,
   Home,
-  LogOut,
   Menu,
   Newspaper,
   Search,
@@ -226,13 +225,9 @@ export default function Layout({ children }) {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-56 bg-[#13131A] border-gray-700">
-                      <div className="px-3 py-2">
-                        <p className="font-medium">{user.full_name}</p>
-                        <p className="text-sm text-gray-400">{user.email}</p>
-                      </div>
                       <DropdownMenuSeparator className="bg-gray-700" />
                       <DropdownMenuItem asChild>
-                        <Link to="/profile" className="cursor-pointer">
+                        <Link to="/profile" className="cursor-pointer text-white">
                           <User className="w-4 h-4 mr-2" />
                           Mi Perfil
                         </Link>
@@ -244,13 +239,6 @@ export default function Layout({ children }) {
                         </DropdownMenuItem>
                       )}
                       <DropdownMenuSeparator className="bg-gray-700" />
-                      <DropdownMenuItem
-                        onClick={() => setUser(null)}
-                        className="cursor-pointer text-red-400"
-                      >
-                        <LogOut className="w-4 h-4 mr-2" />
-                        Cerrar Sesión
-                      </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </>
