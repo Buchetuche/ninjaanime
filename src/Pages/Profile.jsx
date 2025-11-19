@@ -7,7 +7,7 @@ import { Clock, Crown, Heart, Settings, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import AnimeCard from "../Components/home/AnimeCard";
 import WatchHistory from "../Entities/WatchHistory";
-
+import userData from "../data/user.json";
 const GENRES = [
   "Acción", "Aventura", "Comedia", "Drama", "Fantasía", "Horror",
   "Misterio", "Romance", "Sci-Fi", "Slice of Life", "Deportes",
@@ -26,7 +26,6 @@ export default function ProfilePage() {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const userData = await base44.auth.me();
         setUser(userData);
         setFormData({
           full_name: userData.full_name || '',

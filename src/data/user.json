@@ -1,7 +1,7 @@
 {
   "id": 1,
-  "name": "Felix Gonzalez",
-  "email": "",
+  "name": "Nael",
+  "email": "Nael@example.com",
   "favorite_genres": ["Acción", "Aventura", "Fantasía"],
   "watchHistory": []
 }

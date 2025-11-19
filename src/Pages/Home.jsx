@@ -167,7 +167,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 relative h-[400px] rounded-2xl overflow-hidden group cursor-pointer">
               <img
-                src={animes[1]?.cover_image}
+                src={animes[1]?.card_image}
                 alt={animes[1]?.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -193,7 +193,7 @@ export default function HomePage() {
               {animes.slice(2, 4).map((anime) => (
                 <div key={anime.id} className="relative h-[191px] rounded-xl overflow-hidden group cursor-pointer">
                   <img
-                    src={anime.cover_image}
+                    src={anime.card_image}
                     alt={anime.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />

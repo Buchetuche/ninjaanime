@@ -193,7 +193,7 @@ export default function Layout({ children }) {
                         }}
                         className="w-full text-left px-3 py-2 hover:bg-[#13131A] flex items-center gap-3 cursor-pointer"
                       >
-                        <img src={s.card_image || s.cover_image} alt={s.title} className="w-10 h-6 object-cover rounded" />
+                        <img src={s.card_image} alt={s.title} className="w-10 h-6 object-cover rounded" />
                         <div className="truncate">
                           <div className="text-sm font-medium">{s.title}</div>
                           {s.title_english && <div className="text-xs text-gray-400 truncate">{s.title_english}</div>}

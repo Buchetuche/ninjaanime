@@ -43,7 +43,7 @@ export default function AnimeDetailsPage() {
         anime_id: animeId,
         episode_number: i + 1,
         title: `Episode ${i + 1}`,
-        thumbnail: anime?.cover_image
+        thumbnail: anime?.card_image
       }));
     },
     enabled: !!anime,
@@ -106,7 +106,7 @@ export default function AnimeDetailsPage() {
       {/* Hero Section */}
       <div className="relative w-full h-[60vh] overflow-hidden">
         <img
-          src={anime.banner_image || anime.cover_image}
+          src={anime.banner_image}
           alt={anime.title}
           className="w-full h-full object-cover"
         />
@@ -119,7 +119,7 @@ export default function AnimeDetailsPage() {
           {/* Poster */}
           <div className="hidden lg:block">
             <img
-              src={anime.cover_image}
+              src={anime.card_image}
               alt={anime.title}
               className="w-full rounded-xl shadow-2xl"
             />
@@ -270,7 +270,7 @@ export default function AnimeDetailsPage() {
                       <div className="bg-[#13131A] rounded-lg overflow-hidden hover:bg-[#1A1A24] transition-colors">
                         <div className="relative aspect-video">
                           <img
-                            src={episode.thumbnail || anime.cover_image}
+                            src={episode.thumbnail || anime.card_image}
                             alt={episode.title}
                             className="w-full h-full object-cover"
                           />

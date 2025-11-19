@@ -1,5 +1,7 @@
 import { Button } from "@/Components/ui/button";
 import { Skeleton } from "@/Components/ui/skeleton";
+import animesData from "@/data/animes.json";
+import userDataJson from "@/data/user.json";
 import { useQuery } from "@tanstack/react-query";
 import {
   ChevronDown,
@@ -13,8 +15,6 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { createPageUrl } from "../Components/lib/utils";
-import Anime from "../Entities/Anime";
 
 export default function WatchPage() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -27,11 +27,11 @@ export default function WatchPage() {
 
   useEffect(() => {
     const loadUser = async () => {
+      await new Promise(resolve => setTimeout(resolve, 200));
       try {
-        const userData = await base44.auth.me();
-        setUser(userData);
-      } catch (error) {
-        console.log("Usuario no autenticado");
+        setUser(userDataJson);
+      } catch (err) {
+        console.log("No se pudo cargar usuario local", err);
       }
     };
     loadUser();
@@ -40,15 +40,27 @@ export default function WatchPage() {
   const { data: anime } = useQuery({
     queryKey: ['anime', animeId],
     queryFn: async () => {
-      const allAnimes = await Anime.list();
-      return allAnimes.find(a => a.id === animeId);
+      await new Promise(resolve => setTimeout(resolve, 100));
+      return animesData.find(a => a.id === animeId);
     },
     enabled: !!animeId,
   });
 
   const { data: episodes } = useQuery({
     queryKey: ['episodes', animeId],
-    queryFn: () => base44.entities.Episode.filter({ anime_id: animeId }, 'episode_number'),
+    queryFn: async () => {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      const anime = animesData.find(a => a.id === animeId);
+      if (!anime) return [];
+      return Array.from({ length: anime.episodes_count || 12 }).map((_, i) => ({
+        id: `${animeId}-ep${i + 1}`,
+        anime_id: animeId,
+        episode_number: i + 1,
+        title: `Episodio ${i + 1}`,
+        thumbnail: anime.card_image,
+        synopsis: anime.synopsis,
+      }));
+    },
     enabled: !!animeId,
     initialData: [],
   });
@@ -66,7 +78,7 @@ export default function WatchPage() {
 
   const handleEpisodeChange = (episode) => {
     setCurrentEpisode(episode);
-    window.history.pushState({}, '', `${createPageUrl("Watch")}?anime=${animeId}&episode=${episode.id}`);
+    window.history.pushState({}, '', `/watch?anime=${animeId}&episode=${episode.id}`);
   };
 
   const goToNextEpisode = () => {
@@ -99,7 +111,7 @@ export default function WatchPage() {
           {/* Placeholder Video Player */}
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
             <img
-              src={currentEpisode.thumbnail || anime.cover_image}
+              src={currentEpisode.thumbnail || anime.card_image}
               alt={currentEpisode.title}
               className="w-full h-full object-cover opacity-40"
             />
@@ -147,7 +159,7 @@ export default function WatchPage() {
           <Link to={`/anime-details?id=${animeId}`}>
             <Button
               variant="ghost"
-              className="absolute top-4 left-4 text-white gap-2 bg-black/50 backdrop-blur-sm hover:bg-black/70"
+              className="absolute top-4 left-4 text-white gap-2 bg-black/50 backdrop-blur-sm hover:bg-black/70 cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5" />
               Volver
@@ -179,13 +191,13 @@ export default function WatchPage() {
                   disabled={episodes[0]?.id === currentEpisode.id}
                   className="flex-1"
                 >
-                  <SkipBack className="w-4 h-4 mr-2" />
+                  <SkipBack className="w-4 h-4 mr-2 cursor-pointer" />
                   Episodio Anterior
                 </Button>
                 <Button
                   onClick={goToNextEpisode}
                   disabled={episodes[episodes.length - 1]?.id === currentEpisode.id}
-                  className="flex-1 bg-[#FF6B35] hover:bg-[#E85A2A]"
+                  className="flex-1 bg-[#FF6B35] hover:bg-[#E85A2A] cursor-pointer"
                 >
                   Siguiente Episodio
                   <SkipForward className="w-4 h-4 ml-2" />
@@ -240,7 +252,7 @@ export default function WatchPage() {
                       <div className="flex items-center gap-3">
                         <div className="relative w-16 h-10 rounded overflow-hidden flex-shrink-0">
                           <img
-                            src={episode.thumbnail || anime.cover_image}
+                            src={episode.thumbnail || anime.card_image}
                             alt={episode.title}
                             className="w-full h-full object-cover"
                           />
