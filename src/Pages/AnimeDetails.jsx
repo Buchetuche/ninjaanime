@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Calendar, Check, Clock, Play, Plus, Share2, Star, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ScrollToTop from "@/Components/lib/ScrollToTop";
 
 export default function AnimeDetailsPage() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -103,6 +104,7 @@ export default function AnimeDetailsPage() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0F]">
+      <ScrollToTop duration={700} />
       {/* Hero Section */}
       <div className="relative w-full h-[60vh] overflow-hidden">
         <img

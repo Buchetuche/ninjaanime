@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ScrollToTop from "@/Components/lib/ScrollToTop";
 
 export default function WatchPage() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -105,6 +106,7 @@ export default function WatchPage() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0F]">
+      <ScrollToTop duration={700} />
       <div className="max-w-[1920px] mx-auto">
         {/* Video Player */}
         <div className="relative bg-black aspect-video">
