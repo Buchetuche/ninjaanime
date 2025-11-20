@@ -3,11 +3,9 @@ import animesData from "@/data/animes.json";
 import userDataJson from "@/data/user.json";
 import { useQuery } from "@tanstack/react-query";
 import { Calendar, Clock, Crown, Sparkles, TrendingUp } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ContentRow from "../Components/home/ContentRow";
 import HeroBanner from "../Components/home/HeroBanner";
-import ScrollToTop from "@/Components/lib/ScrollToTop";
-import { usePreloadImages } from "@/Components/lib/usePreloadImages";
 
 export default function HomePage() {
   const [user, setUser] = useState(null);
@@ -37,16 +35,6 @@ export default function HomePage() {
     },
     initialData: [],
   });
-
-  // Precargar imágenes de banners y tarjetas (optimizado con useMemo)
-  const imagesToPreload = useMemo(() => {
-    return animes
-      .slice(0, 20)
-      .flatMap(a => [a.banner_image, a.card_image])
-      .filter(Boolean);
-  }, [animes]);
-
-  const imagesReady = usePreloadImages(imagesToPreload);
 
   // Auto-rotar destacados
   useEffect(() => {
@@ -133,7 +121,7 @@ export default function HomePage() {
 
   
 
-  if (isLoading || !imagesReady) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-[#0A0A0F]">
         <Skeleton className="w-full h-[90vh] bg-[#13131A]" />
@@ -155,7 +143,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0F]">
-      <ScrollToTop duration={700} />
       <HeroBanner
         currentAnime={animes[featuredIndex]}
         incomingAnime={nextIndex != null ? animes[nextIndex] : null}
